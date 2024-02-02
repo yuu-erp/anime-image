@@ -1,6 +1,9 @@
+"use client";
 import classNames from "classnames";
 import React from "react";
 import Image from "next/image";
+import ImageLogo from "../../../public/logo.jpg";
+
 const Logo: React.FC<React.HTMLAttributes<HTMLDivElement>> = ({
   className,
   ...props
@@ -8,11 +11,11 @@ const Logo: React.FC<React.HTMLAttributes<HTMLDivElement>> = ({
   return (
     <div
       className={classNames(
-        "relative flex h-12 w-12 rounded-full overflow-hidden",
+        "relative flex h-10 w-10 rounded-full overflow-hidden",
         className
       )}
       {...props}>
-      <Image src="/logo.jpg" layout="fill" objectFit="contain" alt="logo" />
+      <Image src={ImageLogo} priority alt="logo" />
     </div>
   );
 };

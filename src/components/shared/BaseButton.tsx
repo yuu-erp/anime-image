@@ -15,6 +15,7 @@ export interface BaseButtonProps
     event: React.MouseEvent<HTMLButtonElement, MouseEvent> | null
   ) => void;
   isLoading?: boolean;
+  disabled?: boolean;
 }
 const BaseButton = React.forwardRef<HTMLButtonElement, BaseButtonProps>(
   (props, ref) => {
@@ -26,6 +27,7 @@ const BaseButton = React.forwardRef<HTMLButtonElement, BaseButtonProps>(
       onClick,
       children,
       isLoading,
+      disabled = false,
       ...rest
     } = props;
 
@@ -35,7 +37,15 @@ const BaseButton = React.forwardRef<HTMLButtonElement, BaseButtonProps>(
         : classNames("w-6 h-6", classNameIcon);
 
     return (
-      <button ref={ref} {...rest} className={className}>
+      <button
+        type="button"
+        ref={ref}
+        {...rest}
+        className={className}
+        onClick={e => {
+          if (disabled) return;
+          onClick?.(e);
+        }}>
         {isLoading && (
           <AiOutlineLoading3Quarters
             className={classNames(iconClass, "animate-spin")}

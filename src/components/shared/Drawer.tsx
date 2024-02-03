@@ -3,6 +3,7 @@ import React, { useImperativeHandle, useState } from "react";
 interface DrawerProps extends React.PropsWithChildren {
   button: React.ComponentType<{ className: string }>;
   className?: string;
+  containerClassName?: string;
 }
 
 export type DrawerRef = {
@@ -11,7 +12,7 @@ export type DrawerRef = {
 };
 
 const Drawer = React.forwardRef<DrawerRef, DrawerProps>((props, ref) => {
-  const { button, className, children } = props;
+  const { button, className, children, containerClassName } = props;
 
   const [isOpen, setIsOpen] = useState(false);
 
@@ -26,7 +27,7 @@ const Drawer = React.forwardRef<DrawerRef, DrawerProps>((props, ref) => {
     }),
     []
   );
-  return <React.Fragment>{children}</React.Fragment>;
+  return <div className={containerClassName}>{children}</div>;
 });
 
 Drawer.displayName = "Drawer";

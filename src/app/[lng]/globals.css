@@ -8,6 +8,8 @@
   --background-end-rgb: 0, 0, 0;
 
   --height-header: 60px;
+  --padding-x-container-desktop: 3rem;
+  --padding-x-container-mobile: 1.5rem;
 }
 @layer base {
   html {

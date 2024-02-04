@@ -31,8 +31,8 @@ export default async function Home() {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           {newData().map((item: any, index: number) => (
             <div key={index} className="grid gap-4">
-              {item.map((item2: any, index: number) => (
-                <div>
+              {item.map((item2: any, index2: number) => (
+                <div key={index2}>
                   <img
                     className="h-full object-cover max-w-full rounded-lg"
                     src={item2.image_url}

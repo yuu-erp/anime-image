@@ -2,21 +2,26 @@
 import classNames from "classnames";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import React from "react";
+import React, { useMemo } from "react";
 
 interface NavItemProps {
   title: string;
   href: string;
+  className?: string;
 }
 
-const NavItem: React.FC<NavItemProps> = ({ ...props }) => {
+const NavItem: React.FC<NavItemProps> = props => {
+  const { title, href, className } = props;
   const pathname = usePathname();
-  const isActive =
-    pathname === props.href || pathname.startsWith(`/*${props.href}`);
+  const isActive = useMemo(() => pathname === href, [href, pathname]);
   return (
-    <Link {...props}>
-      <p className={classNames(isActive ? "text-rose-400" : "text-white")}>
-        {props.title}
+    <Link href={href}>
+      <p
+        className={classNames(
+          className,
+          isActive ? "text-rose-400" : "text-white"
+        )}>
+        {title}
       </p>
     </Link>
   );
